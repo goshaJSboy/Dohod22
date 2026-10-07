@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 public class dohodi {
-    public static int usnDohodi(int earnings) {
+    public static int simplifiedTaxationSystem(int earnings) {
         int tax = earnings * 6 / 100;
         return tax;
     }
 
-    public static int usnDohodiMinus(int earnings, int spendings) {
+    public static int simplifiedTaxationSystemMinus(int earnings, int spendings) {
         int taxMinus = (earnings - spendings) * 15 / 100;
         if (taxMinus >= 0) {
             return taxMinus;
@@ -16,15 +16,16 @@ public class dohodi {
     }
 
     public static int saving(int earnings, int spendings) {
+        int tax1 = simplifiedTaxationSystem(earnings);
+        int tax2 = simplifiedTaxationSystemMinus(earnings, spendings);
         int economyG;
-        if (usnDohodi(earnings) < usnDohodiMinus(earnings, spendings)) {
-            economyG = usnDohodiMinus(earnings, spendings) - usnDohodi(earnings);
+        if (tax1 < tax2) {
+            economyG = tax2 - tax1;
         } else {
-            economyG = usnDohodi(earnings) - usnDohodiMinus(earnings, spendings);
+            economyG = tax1 - tax2;
         }
         return economyG;
     }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int earnings = 0;    // доходы
@@ -45,8 +46,9 @@ public class dohodi {
                 ;
                 scanner.nextLine();
             } else if ("3".equals(firstInput)) {
-                int tax1 = usnDohodi(earnings);
-                int tax2 = usnDohodiMinus(earnings, spendings);
+                int tax1 = simplifiedTaxationSystem(earnings);
+                int tax2 = simplifiedTaxationSystemMinus(earnings, spendings);
+
                 if (tax1 < tax2) {
                     System.out.println("Мы советуем вам УСН доходы");
                     System.out.println("Ваш налог составит:" + tax1 + " рублей");

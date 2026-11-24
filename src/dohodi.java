@@ -46,8 +46,6 @@ public class dohodi {
                 ;
                 scanner.nextLine();
             } else if ("3".equals(firstInput)) {
-                int tax1 = simplifiedTaxationSystem(earnings);
-                int tax2 = simplifiedTaxationSystemMinus(earnings, spendings);
 
                 if (tax1 < tax2) {
                     System.out.println("Мы советуем вам УСН доходы");
